@@ -2,12 +2,6 @@ from django.db import models
 from django.urls import reverse
 
 
-class Training1(models.Model):
-    title = models.CharField(max_length=255)
-    time = models.TextField()
-    place = models.TextField()
-    training_manager = models.CharField(max_length=255)
-    photo = models.ImageField(upload_to="photos/%y/%m/%d/")
 
 
 class Books(models.Model):
@@ -52,9 +46,19 @@ class Motivation(models.Model):
 
 
 
-class Trainings1(models.Model):
+class Training2(models.Model):
     title = models.CharField(max_length=255)
     time = models.TextField()
     place = models.TextField()
     training_manager = models.CharField(max_length=255)
     photo = models.ImageField(upload_to="photos/%y/%m/%d/")
+
+class Training1(models.Model):
+    title = models.CharField(max_length=255)
+    time = models.TextField()
+    place = models.TextField()
+    training_manager = models.CharField(max_length=255)
+    photo = models.ImageField(upload_to="photos/%y/%m/%d/")
+
+    def __str__(self):
+        return self.title

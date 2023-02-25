@@ -1,0 +1,16 @@
+{% extends 'pyproject/navbar.html' %}
+{% block content %}
+<ul>
+    {% for p in t1 %}
+    <br>
+    <li>
+        <h4>{{p.title}}</h4>
+        <p>{{p.training_manager}}</p>
+        <h5>{{p.time}}</h5>
+        <p>{{p.place}}</p>
+        <hr>
+    </li>
+    {% endfor %}
+
+</ul>
+{% endblock %}

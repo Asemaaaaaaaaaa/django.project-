@@ -24,6 +24,6 @@ urlpatterns = [
     path('', include('pyproject.urls')),
 ]
 
-handler404 = pageNotFound
+
 
 
