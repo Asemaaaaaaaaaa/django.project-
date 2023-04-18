@@ -44,3 +44,52 @@ def badRequest(request,exception):
 
 def show_post(request, post_id):
      return HttpResponse(f"Отображение статьи с id = {post_id}")
+
+
+class BookAPIView(APIView):
+    def get(self,request):
+        b = Books.objects.all()
+        return Response({'books': BookSerializer(b, many=True).data})
+
+    def post(self,request):
+        serializer = BookSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'post': serializer.data})
+    def put(self,request,*args, **kwargs):
+        pk = kwargs.get("pk", None)
+        if not pk:
+            return Response({"error":"Method PUT not allowed"})
+
+        try:
+            instance = Books.objects.get(pk=pk)
+        except:
+            return Response({"error": "Object does not exists"})
+
+        serializer = BookSerializer(data=request.data, instance=instance)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"post" : serializer.data})
+
+    def delete(self, request, *args, **kwargs):
+        pk = kwargs.get("pk", None)
+        if not pk:
+            return Response({"error": "Method DELETE not allowed"})
+        try:
+            book = Books.objects.get(pk=pk)
+
+        except:
+            return Response({"error": "Object does not exists"})
+        book.delete()
+        return Response({"post": "deleted post " })
+
+class Training1APIView(generics.ListAPIView):
+    queryset = Training1.objects.all()
+    serializer_class = Training1Serializer
+
+class Training2APIView(generics.ListAPIView):
+    queryset = Training2.objects.all()
+    serializer_class = Training1Serializer
+
+def pageNotFound(request,exception):
+    return HttpResponseNotFound('<h1>Страница не найдена </h1>')
