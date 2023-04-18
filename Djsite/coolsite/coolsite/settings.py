@@ -38,7 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pyproject.apps.PyprojectConfig'
+    'django.contrib.staticfiles',
+    'debug_toolbar',
+    'captcha',
+    'project.apps.ProjectConfig'
+    'project.apps.ProjectConfig',
+    'rest_framework' ,
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -130,3 +137,5 @@ MEDIA_URL = 'media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
